@@ -3516,8 +3516,8 @@ Transform:
   m_GameObject: {fileID: 1042172916}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5076252, y: -0.1, z: 0.75}
-  m_LocalScale: {x: 0.34350097, y: 0.1, z: 0.075}
+  m_LocalPosition: {x: -0.6199, y: -0.1, z: 0.75}
+  m_LocalScale: {x: 0.05, y: 0.1, z: 0.075}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 615750766}
@@ -3563,7 +3563,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d67ffd9e7b5ea914d95d8b960eabbfea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3608,6 +3608,7 @@ MonoBehaviour:
   promptMessage: Keypad
   _door: {fileID: 1503706033}
   _animator: {fileID: 1503706038}
+  _keypadMaterial: {fileID: 2100000, guid: d67ffd9e7b5ea914d95d8b960eabbfea, type: 2}
 --- !u!1 &1141755426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,10 +3699,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: '[Prompt]'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c702211376fa8f64688a1f4ab9ba7214, type: 2}
+  m_sharedMaterial: {fileID: -2893886158067804171, guid: c702211376fa8f64688a1f4ab9ba7214,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3725,7 +3727,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 44.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
