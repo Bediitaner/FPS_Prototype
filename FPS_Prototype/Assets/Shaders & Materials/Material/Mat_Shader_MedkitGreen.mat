@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_Shader_SimpleGlow
+  m_Name: Mat_Shader_MedkitGreen
   m_Shader: {fileID: -6465566751694194690, guid: af3c0b5f94814fe42baa1104014a29b5,
     type: 3}
   m_Parent: {fileID: 0}
@@ -54,5 +54,5 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 2, g: 0, b: 0, a: 2}
+    - _Color: {r: 0, g: 2, b: 0.00004386902, a: 2}
   m_BuildTextureStacks: []

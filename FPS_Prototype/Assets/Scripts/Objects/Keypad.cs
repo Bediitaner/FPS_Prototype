@@ -10,7 +10,9 @@ namespace ProjectH.Scripts.Objects
 
         [SerializeField] private GameObject _door;
         [SerializeField] private Animator _animator;
-        [SerializeField] private Material _keypadMaterial;
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private Material _darkRed;
+        [SerializeField] private Material _glowRed;
 
         #endregion
 
@@ -53,7 +55,9 @@ namespace ProjectH.Scripts.Objects
 
         private void SetButtonColor()
         {
-            _keypadMaterial.color = _doorOpen ? Color.Lerp(Color.black, Color.red, 0.3f) : Color.red*2;
+            _meshRenderer.material = _doorOpen ? _darkRed : _glowRed;
+            
+            // _keypadMaterial.color = _doorOpen ? Color.Lerp(Color.black, Color.red, 0.3f) : Color.red*2;
         }
 
         #endregion
