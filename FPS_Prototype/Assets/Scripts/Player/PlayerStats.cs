@@ -1,4 +1,4 @@
-using UI;
+using ProjectH.Scripts.UI;
 using UnityEngine;
 
 namespace ProjectH.Scripts.Player
@@ -24,7 +24,8 @@ namespace ProjectH.Scripts.Player
         {
             _currentHealth = _maxHealth;
             
-            _healthBarUI.SetSliderMax(_maxHealth);
+            _healthBarUI.SetSliderMaxValue(_maxHealth);
+            _healthBarUI.SetSliderStartingValue(_currentHealth);
             _healthBarUI.SetUIText(_currentHealth,_maxHealth);
         }
 
@@ -51,11 +52,13 @@ namespace ProjectH.Scripts.Player
 
         public void DecreaseHealth(float damage)
         {
+            var cachedValue = _currentHealth;
+            
             _currentHealth -= damage;
             _currentHealth = Mathf.Max(_currentHealth, 0);
 
-            _healthBarUI.SetSlider(_currentHealth);
-            _healthBarUI.SetUIText(_currentHealth, _maxHealth);
+            _healthBarUI.UpdateSliderValue(_currentHealth);
+            _healthBarUI.UpdateUIText(cachedValue,_currentHealth ,_maxHealth);
         }
 
         #endregion
@@ -64,11 +67,13 @@ namespace ProjectH.Scripts.Player
 
         public void IncreaseHealth(float amount)
         {
+            var cachedValue = _currentHealth;
+
             _currentHealth += amount;
             _currentHealth = Mathf.Min(_currentHealth, _maxHealth);
 
-            _healthBarUI.SetSlider(_currentHealth);
-            _healthBarUI.SetUIText(_currentHealth, _maxHealth);
+            _healthBarUI.UpdateSliderValue(_currentHealth);
+            _healthBarUI.UpdateUIText(cachedValue,_currentHealth ,_maxHealth);
         }
 
         #endregion

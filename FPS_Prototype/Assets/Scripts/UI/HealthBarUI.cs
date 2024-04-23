@@ -3,27 +3,68 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace ProjectH.Scripts.UI
 {
     public class HealthBarUI : MonoBehaviour
     {
+        #region Fields
+
         [SerializeField] private Slider _slider;
         [SerializeField] private TextMeshProUGUI _txtHealth;
 
-        public void SetSlider(float amount)
+        #endregion
+        
+
+        #region Slider: Set
+
+        public void SetSliderStartingValue(float currentValue)
         {
-            _slider.DOValue(amount, 0.5f);
+            _slider.value = currentValue;
         }
 
-        public void SetSliderMax(float amount)
+        #endregion
+
+        #region Slider: Set: Max
+
+        public void SetSliderMaxValue(float maxAmount)
         {
-            _slider.maxValue = amount;
-            SetSlider(amount);
+            _slider.maxValue = maxAmount;
         }
+
+        #endregion
+
+        #region Slider: Update
+
+        public void UpdateSliderValue(float updatedAmount)
+        {
+            _slider.DOValue(updatedAmount, 0.5f);
+        }
+
+        #endregion
+
+
+        #region Text: Set
 
         public void SetUIText(float currentHealth, float maxHealth)
         {
-           _txtHealth.text = currentHealth + " / " + maxHealth;
+            _txtHealth.text = $"{currentHealth} / {maxHealth}";
         }
+
+        #endregion
+
+        #region Text: Update
+
+        public void UpdateUIText(float currentValue, float updatedAmount, float maxValue)
+        {
+            DOTween.To(() => currentValue, x => currentValue = Mathf.RoundToInt(x), updatedAmount, 0.5f)
+                .OnUpdate(() => _txtHealth.text = $"{currentValue} / {maxValue}");
+
+            var startColor = currentValue < updatedAmount ? Color.green : Color.gray;
+
+            DOTween.To(() => _txtHealth.color, x => _txtHealth.color = x, startColor, 0.5f)
+                .OnComplete(() => _txtHealth.color = Color.white);
+        }
+
+        #endregion
     }
 }
