@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace UI
 
         public void SetSlider(float amount)
         {
-            _slider.value = amount;
+            _slider.DOValue(amount, 0.5f);
         }
 
         public void SetSliderMax(float amount)
