@@ -3605,7 +3605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca36cf4790a08b4b824c585e07b656e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Keypad
+  UseEvents: 0
+  PromptMessage: Keypad
   _door: {fileID: 1503706033}
   _animator: {fileID: 1503706038}
   _keypadMaterial: {fileID: 2100000, guid: d67ffd9e7b5ea914d95d8b960eabbfea, type: 2}
@@ -4473,7 +4474,6 @@ Transform:
   - {fileID: 1620690470}
   - {fileID: 1791436525}
   - {fileID: 2014934917}
-  - {fileID: 1574587670}
   - {fileID: 1771506858}
   - {fileID: 711326254}
   - {fileID: 1266813508}
@@ -4765,7 +4765,9 @@ GameObject:
   - component: {fileID: 1574587673}
   - component: {fileID: 1574587672}
   - component: {fileID: 1574587671}
-  m_Layer: 0
+  - component: {fileID: 1574587675}
+  - component: {fileID: 1574587674}
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4780,12 +4782,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574587669}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.5, y: -1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -49.38055, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1422103488}
+  m_Father: {fileID: 1836811712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1574587671
 BoxCollider:
@@ -4858,6 +4860,47 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574587669}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1574587674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574587669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990ee652970316a4cabc979d060ac3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1574587669}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1574587675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574587669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4ad76f7a84d0c4198a7f3c5fdbd84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseEvents: 1
+  PromptMessage: Middle Cube
 --- !u!1 &1620690466
 GameObject:
   m_ObjectHideFlags: 0
@@ -5293,8 +5336,9 @@ GameObject:
   - component: {fileID: 1771506858}
   - component: {fileID: 1771506861}
   - component: {fileID: 1771506860}
-  - component: {fileID: 1771506859}
-  m_Layer: 0
+  - component: {fileID: 1771506862}
+  - component: {fileID: 1771506863}
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5316,27 +5360,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1422103488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1771506859
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771506857}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1771506860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5387,6 +5410,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771506857}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1771506862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771506857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4ad76f7a84d0c4198a7f3c5fdbd84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseEvents: 0
+  PromptMessage: 'Test: This is a cube'
+--- !u!65 &1771506863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771506857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1791436524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5629,6 +5687,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 615750766}
+  - {fileID: 1574587670}
   m_Father: {fileID: 1141755427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1898943918

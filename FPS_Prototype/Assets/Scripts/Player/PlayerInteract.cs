@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using ProjectH.Scripts.Managers;
 using UnityEngine;
 
@@ -37,13 +35,14 @@ namespace ProjectH.Scripts.Player
             _playerUI.UpdateText(string.Empty);
             var ray = new Ray(_cam.transform.position, _cam.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction * _distance);
-            RaycastHit hitInfo; // varaible to store our collision information. 
+            RaycastHit hitInfo; 
+            
             if (Physics.Raycast(ray, out hitInfo, _distance, _layerMask))
             {
                 if (hitInfo.collider.GetComponent<Interactable>() != null)
                 {
                     var interactable = hitInfo.collider.GetComponent<Interactable>();
-                    _playerUI.UpdateText(interactable.promptMessage);
+                    _playerUI.UpdateText(interactable.PromptMessage);
                     if (_inputManager.OnFoot.Interact.triggered)
                     {
                        interactable.BaseInteract();
