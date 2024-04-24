@@ -20,6 +20,9 @@ namespace ProjectH.Scripts.Player
 
         #endregion
 
+        
+        #region Process: Look
+
         public void ProcessLook(Vector2 input)
         {
             var mouseX = input.x;
@@ -32,5 +35,7 @@ namespace ProjectH.Scripts.Player
 
             transform.Rotate(Vector3.up * (mouseX * Time.deltaTime * _xSensivity));
         }
+
+        #endregion
     }
 }
