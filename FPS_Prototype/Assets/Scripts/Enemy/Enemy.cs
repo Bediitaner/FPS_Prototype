@@ -35,6 +35,7 @@ namespace ProjectH.Scripts.Enemy
         private void Update()
         {
             CanSeePlayer();
+            _currentState = _stateMachine.activeState.ToString();
         }
 
         public bool CanSeePlayer()
@@ -59,8 +60,6 @@ namespace ProjectH.Scripts.Enemy
                                 return true;
                             }
                         }
-
-                        Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.yellow);
                     }
                 }
             }

@@ -14,11 +14,16 @@ namespace ProjectH.Scripts.Enemy.States
         public override void Perform()
         {
             PatrolCycle();
+
+            if (Enemy.CanSeePlayer())
+            {
+                StateMachine.ChangeState(new AttackState());
+            }
         }
 
         public override void Exit()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void PatrolCycle()
