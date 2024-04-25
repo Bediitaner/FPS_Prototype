@@ -15,7 +15,7 @@ namespace ProjectH.Scripts.Enemy.States
         {
             PatrolCycle();
 
-            if (Enemy.CanSeePlayer())
+            if (Enemy.EnemyCanSeePlayer())
             {
                 StateMachine.ChangeState(new AttackState());
             }

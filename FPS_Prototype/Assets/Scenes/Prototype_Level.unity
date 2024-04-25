@@ -414,11 +414,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a475e051a84114888a09db8754a3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentState: 
   _path: {fileID: 1391394273}
   _eyeHeight: 0.75
-  sightDistance: 20
-  fieldOfView: 85
+  _sightDistance: 20
+  _fieldOfView: 85
+  _gunBarrel: {fileID: 2135661566}
+  _fireRate: 1.3
+  _currentState: 
 --- !u!1 &73439318
 GameObject:
   m_ObjectHideFlags: 0
