@@ -54,6 +54,8 @@ namespace ProjectH.Scripts.Enemy.States
                     Enemy.Agent.SetDestination(Enemy.transform.position + (Random.insideUnitSphere * 5));
                     _moveTimer = 0;
                 }
+
+                Enemy.LastKnownPosition = Enemy.Player.transform.position;
             }
             else //lost sight of player
             {
@@ -61,7 +63,7 @@ namespace ProjectH.Scripts.Enemy.States
                 if (_losePlayerTimer > 5)
                 {
                     //change to search state
-                    StateMachine.ChangeState(new PatrolState());
+                    StateMachine.ChangeState(new SearchState());
                 }
             }
         }

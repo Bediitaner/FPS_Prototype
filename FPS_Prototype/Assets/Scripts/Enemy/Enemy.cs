@@ -7,12 +7,6 @@ namespace ProjectH.Scripts.Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        private NavMeshAgent _agent;
-        public NavMeshAgent Agent => _agent;
-
-        private GameObject _player;
-        public GameObject Player => _player;
-        
         #region Content
 
         [Header("Path")]
@@ -28,10 +22,26 @@ namespace ProjectH.Scripts.Enemy
         [SerializeField] private Transform _gunBarrel;
         [Range(0.1f, 10f)] [SerializeField] private float _fireRate; public float FireRate => _fireRate;
 
-        
+        [Header("Debug")]
+        [SerializeField] private GameObject _debugSphere;        
         [SerializeField] private string _currentState;
         #endregion
+        
+        #region Properties
 
+        private NavMeshAgent _agent;
+        private GameObject _player;
+        private Vector3 _lastKnownPosition;
+
+        public NavMeshAgent Agent => _agent;
+        public GameObject Player => _player;
+        public Vector3 LastKnownPosition {
+            get => _lastKnownPosition;
+            set => _lastKnownPosition = value;
+        }
+
+        #endregion
+        
         #region Fields
         
         private StateMachine _stateMachine;
@@ -52,6 +62,7 @@ namespace ProjectH.Scripts.Enemy
         {
             EnemyCanSeePlayer();
             _currentState = _stateMachine.activeState.ToString();
+            _debugSphere.transform.position = _lastKnownPosition;
         }
 
         #endregion
