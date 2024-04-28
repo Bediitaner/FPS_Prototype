@@ -24,7 +24,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""OnFoot"",
+            ""name"": ""Character"",
             ""id"": ""35b4f3fd-e58e-44a5-b834-90f974a819ef"",
             ""actions"": [
                 {
@@ -824,14 +824,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // OnFoot
-        m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
-        m_OnFoot_Movement = m_OnFoot.FindAction("Movement", throwIfNotFound: true);
-        m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
-        m_OnFoot_Look = m_OnFoot.FindAction("Look", throwIfNotFound: true);
-        m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
-        m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
-        m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
+        // Character
+        m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
+        m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
+        m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+        m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
+        m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
+        m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
+        m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -902,34 +902,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // OnFoot
-    private readonly InputActionMap m_OnFoot;
-    private List<IOnFootActions> m_OnFootActionsCallbackInterfaces = new List<IOnFootActions>();
-    private readonly InputAction m_OnFoot_Movement;
-    private readonly InputAction m_OnFoot_Jump;
-    private readonly InputAction m_OnFoot_Look;
-    private readonly InputAction m_OnFoot_Crouch;
-    private readonly InputAction m_OnFoot_Sprint;
-    private readonly InputAction m_OnFoot_Interact;
-    public struct OnFootActions
+    // Character
+    private readonly InputActionMap m_Character;
+    private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
+    private readonly InputAction m_Character_Movement;
+    private readonly InputAction m_Character_Jump;
+    private readonly InputAction m_Character_Look;
+    private readonly InputAction m_Character_Crouch;
+    private readonly InputAction m_Character_Sprint;
+    private readonly InputAction m_Character_Interact;
+    public struct CharacterActions
     {
         private @PlayerInput m_Wrapper;
-        public OnFootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_OnFoot_Movement;
-        public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
-        public InputAction @Look => m_Wrapper.m_OnFoot_Look;
-        public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
-        public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
-        public InputAction @Interact => m_Wrapper.m_OnFoot_Interact;
-        public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
+        public CharacterActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Character_Movement;
+        public InputAction @Jump => m_Wrapper.m_Character_Jump;
+        public InputAction @Look => m_Wrapper.m_Character_Look;
+        public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
+        public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
+        public InputAction @Interact => m_Wrapper.m_Character_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(OnFootActions set) { return set.Get(); }
-        public void AddCallbacks(IOnFootActions instance)
+        public static implicit operator InputActionMap(CharacterActions set) { return set.Get(); }
+        public void AddCallbacks(ICharacterActions instance)
         {
-            if (instance == null || m_Wrapper.m_OnFootActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_CharacterActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CharacterActionsCallbackInterfaces.Add(instance);
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
@@ -950,7 +950,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.canceled += instance.OnInteract;
         }
 
-        private void UnregisterCallbacks(IOnFootActions instance)
+        private void UnregisterCallbacks(ICharacterActions instance)
         {
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
@@ -972,21 +972,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.canceled -= instance.OnInteract;
         }
 
-        public void RemoveCallbacks(IOnFootActions instance)
+        public void RemoveCallbacks(ICharacterActions instance)
         {
-            if (m_Wrapper.m_OnFootActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_CharacterActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IOnFootActions instance)
+        public void SetCallbacks(ICharacterActions instance)
         {
-            foreach (var item in m_Wrapper.m_OnFootActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_CharacterActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_CharacterActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public OnFootActions @OnFoot => new OnFootActions(this);
+    public CharacterActions @Character => new CharacterActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1105,7 +1105,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
-    public interface IOnFootActions
+    public interface ICharacterActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

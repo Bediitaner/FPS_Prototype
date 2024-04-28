@@ -10,8 +10,8 @@ namespace ProjectH.Scripts.Managers
 
         private PlayerInput _playerInput;
         
-        private PlayerInput.OnFootActions _onFoot;
-        public PlayerInput.OnFootActions OnFoot => _onFoot;
+        private PlayerInput.CharacterActions _character;
+        public PlayerInput.CharacterActions Character => _character;
 
         private PlayerMotor _motor;
         private PlayerLook _look;
@@ -23,14 +23,14 @@ namespace ProjectH.Scripts.Managers
         private void Awake()
         {
             _playerInput = new PlayerInput();
-            _onFoot = _playerInput.OnFoot;
+            _character = _playerInput.Character;
             
             _motor = GetComponent<PlayerMotor>();
             _look = GetComponent<PlayerLook>();
             
-            _onFoot.Jump.performed += ctx => _motor.Jump();
-            _onFoot.Sprint.performed += ctx => _motor.Sprint();
-            _onFoot.Crouch.performed += ctx => _motor.Crouch();
+            _character.Jump.performed += ctx => _motor.Jump();
+            _character.Sprint.performed += ctx => _motor.Sprint();
+            _character.Crouch.performed += ctx => _motor.Crouch();
         }
         private void FixedUpdate()
         {
@@ -39,18 +39,18 @@ namespace ProjectH.Scripts.Managers
 
         private void LateUpdate()
         {
-            _motor.ProcessMove(_onFoot.Movement.ReadValue<Vector2>());
-            _look.ProcessLook(_onFoot.Look.ReadValue<Vector2>());
+            _motor.ProcessMove(_character.Movement.ReadValue<Vector2>());
+            _look.ProcessLook(_character.Look.ReadValue<Vector2>());
         }
 
         private void OnEnable()
         {
-            _onFoot.Enable();
+            _character.Enable();
         }
 
         private void OnDisable()
         {
-            _onFoot.Disable();
+            _character.Disable();
         }
 
         #endregion

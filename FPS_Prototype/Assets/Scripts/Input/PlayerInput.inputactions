@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "OnFoot",
+            "name": "Character",
             "id": "35b4f3fd-e58e-44a5-b834-90f974a819ef",
             "actions": [
                 {

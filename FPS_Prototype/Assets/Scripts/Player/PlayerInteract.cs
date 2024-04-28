@@ -43,7 +43,7 @@ namespace ProjectH.Scripts.Player
                 {
                     var interactable = hitInfo.collider.GetComponent<Interactable>();
                     _playerUI.UpdateText(interactable.PromptMessage);
-                    if (_inputManager.OnFoot.Interact.triggered)
+                    if (_inputManager.Character.Interact.triggered)
                     {
                        interactable.BaseInteract();
                     }

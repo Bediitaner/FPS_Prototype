@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   _gunName: Assault Rifle
-  _fireRate: 9000
+  _fireRate: 4000
+  _aimSpeed: 15
   _prefab: {fileID: 1905491777491833756, guid: 4276d09b0b51f1e44af7d5b6dc7e6665, type: 3}
