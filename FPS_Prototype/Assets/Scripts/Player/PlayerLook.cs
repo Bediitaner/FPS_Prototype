@@ -9,6 +9,8 @@ namespace ProjectH.Scripts.Player
         [SerializeField] 
         private Camera _camera;
         public Camera Camera => _camera;
+
+        [SerializeField] private Transform _weapon;
         
         [SerializeField] private float _xSensivity = 30f, _ySensivity = 30f, _lookXLimit = 80f;
 
@@ -30,6 +32,7 @@ namespace ProjectH.Scripts.Player
 
             _xRotation -= (mouseY * Time.deltaTime * _ySensivity);
             _xRotation = Mathf.Clamp(_xRotation, -_lookXLimit, _lookXLimit);
+            _weapon.localRotation = Quaternion.Euler(_xRotation, 0, 0);
 
             _camera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
 
