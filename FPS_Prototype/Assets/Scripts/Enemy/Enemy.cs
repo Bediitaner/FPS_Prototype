@@ -107,12 +107,11 @@ namespace ProjectH.Scripts.Enemy
         {
             //instantiate a new bullet 
             var bullet = Instantiate(Resources.Load("Prefabs/Bullet") as GameObject,_gunBarrel.position,gameObject.transform.rotation);
-            //rotation of the bullet
             
             //calculate the direction to shoot (player)
             var shootDirection = (_player.transform.position - _gunBarrel.position).normalized;
             //add force rigidbody the bullet
-            bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-3f,3f),Vector3.up) * shootDirection * 40;
+            bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-3f,3f),Vector3.up) * shootDirection * 60;
         }
 
         #endregion
