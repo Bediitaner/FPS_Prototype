@@ -7,9 +7,14 @@ namespace ProjectH.Scripts.Player
 {
     public class PlayerUI : MonoBehaviour
     {
+        #region Content
+
         [SerializeField] private TextMeshProUGUI _prompText;
+
+        #endregion
         
-        // Start is called before the first frame update
+        #region Unity: Start | Update
+
         void Start()
         {
         }
@@ -18,5 +23,7 @@ namespace ProjectH.Scripts.Player
         {
             _prompText.text = promptMessage;
         }
+
+        #endregion
     }
 }

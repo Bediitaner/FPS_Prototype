@@ -20,8 +20,9 @@ namespace ProjectH.Scripts.Player
         private InputManager _inputManager;
 
         #endregion
+        
+        #region Unity: Start | Update
 
-        // Start is called before the first frame update
         private void Start()
         {
             _cam = GetComponent<PlayerLook>().Camera;
@@ -29,14 +30,23 @@ namespace ProjectH.Scripts.Player
             _inputManager = GetComponent<InputManager>();
         }
 
-        // Update is called once per frame
         private void Update()
+        {
+            UpdateText();
+        }
+
+        #endregion
+
+        
+        #region Text: Update
+
+        private void UpdateText()
         {
             _playerUI.UpdateText(string.Empty);
             var ray = new Ray(_cam.transform.position, _cam.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction * _distance);
-            RaycastHit hitInfo; 
-            
+            RaycastHit hitInfo;
+
             if (Physics.Raycast(ray, out hitInfo, _distance, _layerMask))
             {
                 if (hitInfo.collider.GetComponent<Interactable>() != null)
@@ -45,10 +55,12 @@ namespace ProjectH.Scripts.Player
                     _playerUI.UpdateText(interactable.PromptMessage);
                     if (_inputManager.Character.Interact.triggered)
                     {
-                       interactable.BaseInteract();
+                        interactable.BaseInteract();
                     }
                 }
             }
         }
+
+        #endregion
     }
 }
