@@ -13,6 +13,21 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   _gunName: Assault Rifle
-  _fireRate: 4000
-  _aimSpeed: 15
   _prefab: {fileID: 1905491777491833756, guid: 4276d09b0b51f1e44af7d5b6dc7e6665, type: 3}
+  _muzzleFlash: {fileID: 0}
+  _bulletHoleGraphic: {fileID: 2586452296389402298, guid: 40319bbc54b7414428d5a7bc40c4d6da,
+    type: 3}
+  _damage: 25
+  _magazineSize: 30
+  _fireRate: 0
+  bulletsPerTap: 1
+  _spread: 0
+  _range: 100
+  _reloadTime: 2
+  _shotInterval: 0.25
+  _aimSpeed: 15
+  _camShakeMagnitude: 0
+  _camShakeDuration: 0
+  _isAutomatic: 1
+  _isBurst: 0
+  _isSingle: 0

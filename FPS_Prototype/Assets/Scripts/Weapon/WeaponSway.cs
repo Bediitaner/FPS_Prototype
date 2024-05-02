@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ProjectH.Scripts.Weapon
+namespace Gameplay.Weapon
 {
     public class WeaponSway : MonoBehaviour
     {
