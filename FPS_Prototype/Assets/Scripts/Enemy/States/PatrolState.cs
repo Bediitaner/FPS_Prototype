@@ -13,12 +13,16 @@ namespace ProjectH.Scripts.Enemy.States
 
         public override void Perform()
         {
-            PatrolCycle();
-
-            if (Enemy.EnemyCanSeePlayer())
+            if (enemyMotor.EnemyStats.IsEnemyDead)
             {
-                StateMachine.ChangeState(new AttackState());
+                StateMachine.ChangeState(new DeadState());
+                return;
             }
+
+            PatrolCycle();
+            
+            if (enemyMotor.EnemyCanSeePlayer())
+                StateMachine.ChangeState(new AttackState());
         }
 
         public override void Exit()
@@ -28,16 +32,16 @@ namespace ProjectH.Scripts.Enemy.States
 
         public void PatrolCycle()
         {
-            if (Enemy.Agent.remainingDistance < 0.5f)
+            if (enemyMotor.Agent.remainingDistance < 0.5f)
             {
                 waitTimer += Time.deltaTime;
                 if (waitTimer > 3)
                 {
-                    if (waypointIndex < Enemy.Path.ListWaypoint.Count - 1)
+                    if (waypointIndex < enemyMotor.Path.ListWaypoint.Count - 1)
                         waypointIndex++;
                     else
                         waypointIndex = 0;
-                    Enemy.Agent.SetDestination(Enemy.Path.ListWaypoint[waypointIndex].position);
+                    enemyMotor.Agent.SetDestination(enemyMotor.Path.ListWaypoint[waypointIndex].position);
                     waitTimer = 0;
                 }
             }

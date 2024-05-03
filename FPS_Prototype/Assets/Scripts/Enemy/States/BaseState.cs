@@ -2,7 +2,7 @@ namespace ProjectH.Scripts.Enemy.States
 {
     public abstract class BaseState
     {
-        public Enemy Enemy;
+        public EnemyMotor enemyMotor;
         public StateMachine StateMachine;
 
         public abstract void Enter();

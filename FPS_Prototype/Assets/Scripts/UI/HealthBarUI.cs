@@ -45,19 +45,19 @@ namespace ProjectH.Scripts.UI
 
         #region Text: Set
 
-        public void SetUIText(float currentHealth, float maxHealth)
+        public void SetUIText(float currentHealth)
         {
-            _txtHealth.text = $"{currentHealth} / {maxHealth}";
+            _txtHealth.text = $"{currentHealth}";
         }
 
         #endregion
 
         #region Text: Update
 
-        public void UpdateUIText(float currentValue, float updatedAmount, float maxValue)
+        public void UpdateUIText(float currentValue, float updatedAmount)
         {
             DOTween.To(() => currentValue, x => currentValue = Mathf.RoundToInt(x), updatedAmount, 0.5f)
-                .OnUpdate(() => _txtHealth.text = $"{currentValue} / {maxValue}");
+                .OnUpdate(() => _txtHealth.text = $"{currentValue}");
 
             var startColor = currentValue < updatedAmount ? Color.green : Color.gray;
 

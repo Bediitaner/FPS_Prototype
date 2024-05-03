@@ -1,11 +1,12 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 namespace ProjectH.Scripts.Enemy
 {
-    public class Enemy : MonoBehaviour
+    public class EnemyMotor : MonoBehaviour
     {
         #region Content
 
@@ -20,11 +21,18 @@ namespace ProjectH.Scripts.Enemy
 
         [Header("Weapon Values")]
         [SerializeField] private Transform _gunBarrel;
-        [Range(0.1f, 10f)] [SerializeField] private float _fireRate; public float FireRate => _fireRate;
+        [Range(0.1f, 10f)]
+        [SerializeField] private float _fireRate;
+        public float FireRate => _fireRate;
 
         [Header("Debug")]
         [SerializeField] private GameObject _debugSphere;        
         [SerializeField] private string _currentState;
+        
+        [Header("Enemy Stats")]
+        [SerializeField]
+        private EnemyStats _enemyStats;
+        public EnemyStats EnemyStats => _enemyStats;
         #endregion
         
         #region Properties

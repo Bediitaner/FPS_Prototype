@@ -2,19 +2,19 @@ using UnityEngine;
 
 namespace ProjectH.Scripts.ScriptableObjectsGen
 {
-    [CreateAssetMenu(fileName = "New Gun", menuName = "bediitaner/Gun/New Gun", order = 1)]
-    public class Gun : ScriptableObject
+    [CreateAssetMenu(fileName = "New Weapon", menuName = "bediitaner/Weapon/New Weapon", order = 1)]
+    public class WeaponScriptableObject : ScriptableObject
     {
-        #region Gun: Info
+        #region Weapon: Info
 
         [Header("Info")]
         [SerializeField] 
-        private string _gunName;
-        public string GunName => _gunName;
+        private string _weaponName;
+        public string WeaponName => _weaponName;
 
         #endregion
 
-        #region Gun: Prefabs
+        #region Weapon: Prefabs
 
         [Header("Prefab")]
         [SerializeField]
@@ -31,7 +31,7 @@ namespace ProjectH.Scripts.ScriptableObjectsGen
 
         #endregion
 
-        #region Gun: Stats
+        #region Weapon: Stats
 
         [Header("Stats")]
         [SerializeField] 
@@ -79,7 +79,7 @@ namespace ProjectH.Scripts.ScriptableObjectsGen
 
         #endregion
 
-        #region Gun: Type
+        #region Weapon: Type
 
         [Header("Type")]
         [SerializeField] 

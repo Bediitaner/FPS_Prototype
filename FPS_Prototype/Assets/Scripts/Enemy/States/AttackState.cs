@@ -34,28 +34,28 @@ namespace ProjectH.Scripts.Enemy.States
 
         private void ChangeState()
         {
-            if (Enemy.EnemyCanSeePlayer()) //player can be seen
+            if (enemyMotor.EnemyCanSeePlayer()) //player can be seen
             {
                 //lock the lose player timer and increase the move and shoot timers
                 _losePlayerTimer = 0;
                 _moveTimer += Time.deltaTime;
                 _shootTimer += Time.deltaTime;
-                Enemy.transform.LookAt(Enemy.Player.transform);
+                enemyMotor.transform.LookAt(enemyMotor.Player.transform);
                 //if shot timer > fireRate
-                if (_shootTimer > Enemy.FireRate)
+                if (_shootTimer > enemyMotor.FireRate)
                 {
                     //shoot at the player
-                    Enemy.Shoot();
+                    enemyMotor.Shoot();
                     _shootTimer = 0;
                 }
                 //move the enemy to a random position after a random time
                 if (_moveTimer > Random.Range(3, 7))
                 {
-                    Enemy.Agent.SetDestination(Enemy.transform.position + (Random.insideUnitSphere * 5));
+                    enemyMotor.Agent.SetDestination(enemyMotor.transform.position + (Random.insideUnitSphere * 5));
                     _moveTimer = 0;
                 }
 
-                Enemy.LastKnownPosition = Enemy.Player.transform.position;
+                enemyMotor.LastKnownPosition = enemyMotor.Player.transform.position;
             }
             else //lost sight of player
             {

@@ -12,17 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c49930ffdd4a3d4ab17fb04b74e4375, type: 3}
   m_Name: SubmachineGun
   m_EditorClassIdentifier: 
-  _gunName: Submachine Gun
-  _fireRate: 4000
-  _aimSpeed: 15
+  _weaponName: Submachine Gun
+  _prefab: {fileID: 1905491777491833756, guid: d4b2f01caacaf834297467d027e99e98, type: 3}
+  _muzzleFlash: {fileID: 0}
+  _bulletHoleGraphic: {fileID: 2586452296389402298, guid: 40319bbc54b7414428d5a7bc40c4d6da,
+    type: 3}
   _damage: 10
   _magazineSize: 0
-  _bulletPerTap: 0
+  _fireRate: 4000
+  bulletsPerTap: 0
   _spread: 0
   _range: 0
   _reloadTime: 0
   _shotInterval: 0
+  _aimSpeed: 15
+  _camShakeMagnitude: 0
+  _camShakeDuration: 0
   _isAutomatic: 0
   _isBurst: 0
   _isSingle: 0
-  _prefab: {fileID: 1905491777491833756, guid: d4b2f01caacaf834297467d027e99e98, type: 3}

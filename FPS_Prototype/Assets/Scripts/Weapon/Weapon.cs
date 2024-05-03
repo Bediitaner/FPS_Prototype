@@ -1,3 +1,4 @@
+using ProjectH.Scripts.Enemy;
 using ProjectH.Scripts.ScriptableObjectsGen;
 using TMPro;
 using UnityEngine;
@@ -9,25 +10,24 @@ namespace ProjectH.Scripts.Weapon
         #region Contents
 
         [Header("Loadout")] 
-        [SerializeField] private Gun[] _loadoutArray;
+        [SerializeField] private WeaponScriptableObject[] _loadoutArray;
         [SerializeField] private Transform _weaponParent;
 
-        [Header("Graphics")]
-        public Camera fpsCam;
-        public Transform attackPoint;
-        public RaycastHit rayHit;
-        public LayerMask whatIsEnemy;
-        public TextMeshProUGUI text;
+        [Header("Graphics")] 
+        [SerializeField] private Camera _camera;
+        [SerializeField] private Transform _attackPoint;
+        [SerializeField] private LayerMask _raycastTargets;
+        [SerializeField] private TextMeshProUGUI _text;
         // public CamShake camShake;
 
         #endregion
 
         #region Fields
-
-        private Gun _equipedWeapon;
         
+        private RaycastHit _rayHit;
+        private WeaponScriptableObject _equipedWeapon;
         private GameObject _currentWeapon;
-        
+
         private int _bulletsLeft;
         private int _bulletsShot;
 
@@ -62,13 +62,13 @@ namespace ProjectH.Scripts.Weapon
             }
 
             if (Input.GetKeyDown(KeyCode.R) && _bulletsLeft < _equipedWeapon.MagazineSize && !_isReloading) Reload();
-        
+
             if (_isReadyToShoot && _isShooting && !_isReloading && _bulletsLeft > 0)
             {
                 _bulletsShot = _equipedWeapon.BulletsPerTap;
                 Shoot();
             }
-            
+
             SetText();
         }
 
@@ -82,7 +82,7 @@ namespace ProjectH.Scripts.Weapon
             //TODO: @Halit - Needs Refactor.
             if (_currentWeapon != null)
                 Destroy(_currentWeapon);
-            
+
             _equipedWeapon = _loadoutArray[index];
 
             var newWeapon = Instantiate(_equipedWeapon.Prefab, _weaponParent.position, _weaponParent.rotation,
@@ -90,13 +90,11 @@ namespace ProjectH.Scripts.Weapon
 
             newWeapon.transform.localPosition = Vector3.zero;
             newWeapon.transform.localEulerAngles = Vector3.zero;
-            
+
             _bulletsLeft = _equipedWeapon.MagazineSize;
             _isReadyToShoot = true;
-            
+
             _currentWeapon = newWeapon;
-            
-            
         }
 
         #endregion
@@ -123,49 +121,47 @@ namespace ProjectH.Scripts.Weapon
         }
 
         #endregion
-        
+
         #region Weapon: Shoot
 
         private void Shoot()
         {
             _isReadyToShoot = false;
-        
+
             //Spread
             float x = Random.Range(-_equipedWeapon.Spread, _equipedWeapon.Spread);
             float y = Random.Range(-_equipedWeapon.Spread, _equipedWeapon.Spread);
-        
+
             //Calculate Direction with Spread
-            Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
-        
+            Vector3 direction = _camera.transform.forward + new Vector3(x, y, 0);
+
             //RayCast
-            if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, _equipedWeapon.Range, whatIsEnemy))
+            if (Physics.Raycast(_camera.transform.position, direction, out _rayHit, _equipedWeapon.Range, _raycastTargets))
             {
-                Debug.Log(rayHit.collider.name);
-        
-                if (rayHit.collider.CompareTag("Enemy"))
-                    Debug.Log("Hit: Enemy!");
+                Debug.Log(_rayHit.collider.name);
+
+                if (_rayHit.collider.CompareTag("Enemy"))
+                    _rayHit.collider.GetComponentInParent<EnemyMotor>().EnemyStats.DecreaseHealth(_equipedWeapon.Damage);
                 else
                     Debug.Log("Hit: Dağ Taş");
-                // rayHit.collider.GetComponent<Enemy>().TakeDamage(damage);
-                    
             }
-        
+
             //ShakeCamera
             // camShake.Shake(camShakeDuration, camShakeMagnitude);
-        
+
             //Graphics
-            Instantiate(_equipedWeapon.BulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
+            Instantiate(_equipedWeapon.BulletHoleGraphic, _rayHit.point, Quaternion.Euler(0, 180, 0));
             // Instantiate(_equipedWeapon.MuzzleFlash, attackPoint.position, Quaternion.identity);
-        
+
             _bulletsLeft--;
             _bulletsShot--;
-        
+
             Invoke("ResetShot", _equipedWeapon.ShotInterval);
-        
+
             if (_bulletsShot > 0 && _bulletsLeft > 0)
                 Invoke("Shoot", _equipedWeapon.FireRate);
         }
-        
+
         private void ResetShot()
         {
             _isReadyToShoot = true;
@@ -196,7 +192,7 @@ namespace ProjectH.Scripts.Weapon
         {
             if (_currentWeapon != null)
             {
-                text.SetText(_bulletsLeft + " / " + _equipedWeapon.MagazineSize);
+                _text.SetText(_bulletsLeft + " / " + _equipedWeapon.MagazineSize);
             }
         }
 

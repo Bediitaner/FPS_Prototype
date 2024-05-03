@@ -13,21 +13,26 @@ namespace ProjectH.Scripts.Enemy.States
 
         public override void Enter()
         {
-            Enemy.Agent.SetDestination(Enemy.LastKnownPosition);
+            enemyMotor.Agent.SetDestination(enemyMotor.LastKnownPosition);
         }
 
         public override void Perform()
         {
-            if (Enemy.EnemyCanSeePlayer())
+            if (enemyMotor.EnemyStats.IsEnemyDead)
+            {
+                StateMachine.ChangeState(new DeadState());
+                return;
+            }
+            if (enemyMotor.EnemyCanSeePlayer())
                 StateMachine.ChangeState(new AttackState());
 
-            if (Enemy.Agent.remainingDistance < Enemy.Agent.stoppingDistance)
+            if (enemyMotor.Agent.remainingDistance < enemyMotor.Agent.stoppingDistance)
             {
                 _searchTimer += Time.deltaTime;
                 _moveTimer += Time.deltaTime;
                 if (_moveTimer > Random.Range(3, 5))
                 {
-                    Enemy.Agent.SetDestination(Enemy.transform.position + (Random.insideUnitSphere * 10));
+                    enemyMotor.Agent.SetDestination(enemyMotor.transform.position + (Random.insideUnitSphere * 10));
                     _moveTimer = 0;
                 }
                 

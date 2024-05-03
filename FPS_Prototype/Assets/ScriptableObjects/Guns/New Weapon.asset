@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c49930ffdd4a3d4ab17fb04b74e4375, type: 3}
-  m_Name: Shotgun
+  m_Name: New Weapon
   m_EditorClassIdentifier: 
-  _weaponName: Shotgun
-  _prefab: {fileID: 1905491777491833756, guid: 4276d09b0b51f1e44af7d5b6dc7e6665, type: 3}
+  _weaponName: 
+  _prefab: {fileID: 0}
   _muzzleFlash: {fileID: 0}
-  _bulletHoleGraphic: {fileID: 2586452296389402298, guid: 40319bbc54b7414428d5a7bc40c4d6da,
-    type: 3}
-  _damage: 8
-  _magazineSize: 36
+  _bulletHoleGraphic: {fileID: 0}
+  _damage: 0
+  _magazineSize: 0
   _fireRate: 0
-  bulletsPerTap: 8
-  _spread: 0.1
-  _range: 100
-  _reloadTime: 4
-  _shotInterval: 0.3
-  _aimSpeed: 15
+  bulletsPerTap: 0
+  _spread: 0
+  _range: 0
+  _reloadTime: 0
+  _shotInterval: 0
+  _aimSpeed: 0
   _camShakeMagnitude: 0
   _camShakeDuration: 0
   _isAutomatic: 0

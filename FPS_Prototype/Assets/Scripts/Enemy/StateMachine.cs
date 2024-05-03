@@ -41,7 +41,7 @@ namespace ProjectH.Scripts.Enemy
             if (activeState != null)
             {
                 activeState.StateMachine = this;
-                activeState.Enemy = GetComponent<Enemy>();
+                activeState.enemyMotor = GetComponent<EnemyMotor>();
                 activeState.Enter();
             }
         }
