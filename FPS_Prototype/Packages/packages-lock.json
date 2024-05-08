@@ -7,6 +7,24 @@
       "dependencies": {},
       "hash": "84f75d84ed06b676936f795fd5c3061ea0b52457"
     },
+    "com.redashstudios.mvc": {
+      "version": "https://github.com/Red-Ash-Studios/RedAsh.MVC.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.redashstudios.services.resource": "1.0.0"
+      },
+      "hash": "3fcd97ecaa8c26893f0e5c61550bbbfd61ebe2e2"
+    },
+    "com.redashstudios.services.resource": {
+      "version": "https://github.com/Red-Ash-Studios/RedAsh.Services.Resource.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.redashstudios.core": "1.0.0"
+      },
+      "hash": "8266f03ad415578ca5994b79419379f6ff092a1a"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

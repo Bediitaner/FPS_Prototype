@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.redashstudios.core": "https://github.com/Red-Ash-Studios/RedAsh.Core.git",
+    "com.redashstudios.mvc": "https://github.com/Red-Ash-Studios/RedAsh.MVC.git",
+    "com.redashstudios.services.resource": "https://github.com/Red-Ash-Studios/RedAsh.Services.Resource.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.3.1",
